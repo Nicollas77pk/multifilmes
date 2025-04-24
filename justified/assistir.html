@@ -15,6 +15,43 @@
       text-align: center;
       margin-bottom: 30px;
     }
+    .player {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 30px auto;
+      position: relative;
+    }
+    video {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .preload-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://m.media-amazon.com/images/S/pv-target-images/3d28d68d84017c03cb6efa2c7f2f6a1fb09dabd036f34faf5dbe8cb14d342286.jpg') center center / cover no-repeat;
+      border-radius: 10px;
+      display: none;
+    }
+    .imdb-info {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin: 40px auto;
+      max-width: 800px;
+    }
+    .imdb-info img {
+      width: 200px;
+      border-radius: 10px;
+    }
+    .imdb-info .details {
+      flex: 1;
+    }
+    .imdb-info .details h2 {
+      margin-top: 0;
+    }
     .temporada {
       margin-bottom: 40px;
     }
@@ -31,52 +68,35 @@
       text-align: center;
       color: #fff;
     }
-    .player {
-      width: 100%;
-      max-width: 800px;
-      margin: 30px auto;
-      display: block;
-      position: relative;
-    }
-    video {
-      width: 100%;
-      border-radius: 10px;
-    }
-    .hover-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('https://www.freeiconspng.com/uploads/cinema-icon-png-8.png') center center / cover no-repeat;
-      border-radius: 10px;
-      opacity: 0.7;
-      display: none;
-    }
-    .player:hover .hover-image {
-      display: block; /* A imagem de hover aparece ao passar o mouse sobre o player */
-    }
   </style>
 </head>
 <body>
 
   <h1>Justified - Temporadas</h1>
 
-  <div id="conteudo"></div>
-
   <div class="player" id="playerBox">
-    <div class="hover-image" id="hoverImage"></div>
+    <div class="preload-image" id="preloadImage"></div>
     <video id="videoPlayer" controls autoplay></video>
   </div>
 
-  <div id="episodiosList"></div>
+  <div class="imdb-info">
+    <img src="https://m.media-amazon.com/images/M/MV5BMjA3NzE4NzY4Nl5BMl5BanBnXkFtZTcwOTc4NzYzMw@@._V1_.jpg" alt="Capa de Justified">
+    <div class="details">
+      <h2>Justified (2010–2015)</h2>
+      <p><strong>Nota IMDb:</strong> 8.6/10</p>
+      <p><strong>Gêneros:</strong> Crime, Drama, Faroeste</p>
+      <p><strong>Sinopse:</strong> O Marechal dos EUA Raylan Givens aplica sua própria marca de justiça em sua cidade natal, enfrentando criminosos e desafios pessoais.</p>
+      <p><a href="https://www.imdb.com/title/tt1489428/" target="_blank" style="color: #00bcd4;">Ver no IMDb</a></p>
+    </div>
+  </div>
+
+  <div id="conteudo"></div>
 
   <script>
     const conteudo = document.getElementById('conteudo');
     const playerBox = document.getElementById('playerBox');
     const videoPlayer = document.getElementById('videoPlayer');
-    const hoverImage = document.getElementById('hoverImage');
-    const episodiosList = document.getElementById('episodiosList');
+    const preloadImage = document.getElementById('preloadImage');
 
     Object.keys(temporadas).forEach(temp => {
       const div = document.createElement('div');
@@ -92,10 +112,15 @@
         btn.innerText = ep.titulo;
         btn.onclick = () => {
           videoPlayer.src = ep.url;
-          hoverImage.style.display = 'none'; // Esconde a imagem de hover quando o vídeo começar
+          preloadImage.style.display = 'block';  // Exibe a imagem de preload
           videoPlayer.load(); // Carrega o vídeo
           videoPlayer.play(); // Reproduz o vídeo
           playerBox.style.display = 'block'; // Exibe o player
+
+          // Esconde a imagem de preload quando o vídeo começar a tocar
+          videoPlayer.oncanplay = () => {
+            preloadImage.style.display = 'none';
+          };
         };
         lista.appendChild(btn);
       });
