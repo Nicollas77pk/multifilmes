@@ -42,23 +42,16 @@
       width: 100%;
       border-radius: 10px;
     }
-    .hover-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('https://www.freeiconspng.com/uploads/cinema-icon-png-8.png') center center / cover no-repeat;
-      border-radius: 10px;
-      opacity: 0.7;
-      display: none;
-    }
-    .player:hover .hover-image {
-      display: block; /* A imagem de hover aparece ao passar o mouse sobre o player */
-    }
-    #episodiosList {
-      margin-top: 20px;
+    .info-imdb {
       text-align: center;
+      margin-top: 20px;
+    }
+    .info-imdb h3 {
+      margin-bottom: 10px;
+    }
+    .info-imdb p {
+      font-size: 16px;
+      line-height: 1.5;
     }
   </style>
 </head>
@@ -67,17 +60,23 @@
   <h1>Justified - Temporadas</h1>
 
   <div class="player" id="playerBox">
-    <div class="hover-image" id="hoverImage"></div>
     <video id="videoPlayer" controls autoplay></video>
   </div>
 
   <div id="episodiosList"></div>
 
+  <div class="info-imdb">
+    <h3>Informações da Série</h3>
+    <p><strong>Nome:</strong> Justified</p>
+    <p><strong>Ano:</strong> 2010 - 2015</p>
+    <p><strong>Gênero:</strong> Crime, Drama, Faroeste</p>
+    <p><strong>IMDb:</strong> <a href="https://www.imdb.com/title/tt1486217/" target="_blank" style="color: #00bcd4;">Justified no IMDb</a></p>
+  </div>
+
   <script>
     const conteudo = document.getElementById('conteudo');
     const playerBox = document.getElementById('playerBox');
     const videoPlayer = document.getElementById('videoPlayer');
-    const hoverImage = document.getElementById('hoverImage');
     const episodiosList = document.getElementById('episodiosList');
 
     Object.keys(temporadas).forEach(temp => {
@@ -94,7 +93,6 @@
         btn.innerText = ep.titulo;
         btn.onclick = () => {
           videoPlayer.src = ep.url;
-          hoverImage.style.display = 'none'; // Esconde a imagem de hover quando o vídeo começar
           videoPlayer.load(); // Carrega o vídeo
           videoPlayer.play(); // Reproduz o vídeo
           playerBox.style.display = 'block'; // Exibe o player
