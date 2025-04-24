@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Catálogo de Séries</title>
   <style>
     body {
@@ -26,7 +27,7 @@
       top: 0;
       left: 0;
       background-color: #111;
-      overflow-y: auto; /* Permite rolagem vertical */
+      overflow-y: auto;
       transition: 0.5s;
       padding-top: 60px;
       z-index: 999;
@@ -77,6 +78,8 @@
       transition: margin-left .5s;
       padding: 20px;
       text-align: center;
+      overflow-y: auto;
+      max-height: 100vh;
     }
 
     /* Card de Séries */
@@ -117,13 +120,50 @@
       background-color: limegreen;
     }
 
+    /* Responsividade para telas menores */
+    @media screen and (max-width: 768px) {
+      .menu-btn {
+        font-size: 25px;
+        top: 10px;
+        left: 10px;
+      }
+
+      .menu-lateral a {
+        font-size: 13px;
+      }
+
+      .catalogo {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+
+      .card {
+        margin: 0 10px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .menu-btn {
+        font-size: 20px;
+        top: 5px;
+        left: 5px;
+      }
+
+      .menu-lateral a {
+        font-size: 12px;
+      }
+
+      .catalogo {
+        grid-template-columns: 1fr;
+      }
+    }
+
   </style>
 </head>
 <body>
 
   <!-- Menu Lateral -->
   <div id="menuLateral" class="menu-lateral">
-    <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
+    <a href="javascript:void(0)" class="close-btn" onclick="toggleMenu()">&#9776;</a>
     <a href="#" onclick="toggleSubmenu('filmes')">Filmes</a>
     <div id="filmes" class="submenu">
       <a href="#">Ação</a>
@@ -149,7 +189,7 @@
   </div>
 
   <!-- Botão de Menu -->
-  <button class="menu-btn" onclick="openMenu()">&#9776;</button>
+  <a href="javascript:void(0)" class="menu-btn" onclick="toggleMenu()">&#9776;</a>
 
   <!-- Conteúdo -->
   <div class="content">
@@ -180,16 +220,22 @@
   </div>
 
   <script>
-    // Função para abrir o menu
-    function openMenu() {
-      document.getElementById("menuLateral").style.width = "250px";
-      document.querySelector(".content").style.marginLeft = "250px";
-    }
+    // Função para abrir e fechar o menu ao clicar no ícone
+    function toggleMenu() {
+      const menu = document.getElementById("menuLateral");
+      const content = document.querySelector(".content");
+      const menuBtn = document.querySelector(".menu-btn");
 
-    // Função para fechar o menu
-    function closeMenu() {
-      document.getElementById("menuLateral").style.width = "0";
-      document.querySelector(".content").style.marginLeft = "0";
+      // Se o menu estiver fechado, abre-o e move o conteúdo
+      if (menu.style.width === "0px" || menu.style.width === "") {
+        menu.style.width = "250px";
+        content.style.marginLeft = "250px";
+        menuBtn.innerHTML = "&#10005;";  // Muda para o ícone de fechar
+      } else {
+        menu.style.width = "0";
+        content.style.marginLeft = "0";
+        menuBtn.innerHTML = "&#9776;";  // Muda de volta para o ícone de menu
+      }
     }
 
     // Função para mostrar/esconder submenu
