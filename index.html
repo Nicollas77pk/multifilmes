@@ -5,19 +5,69 @@
   <title>Catálogo de Séries</title>
   <style>
     body {
+      font-family: Poppins, sans-serif;
+      font-size: 14px;
+      margin: 0;
+      padding: 0;
       background-color: #121212;
       color: white;
-      font-family: Poppins, sans-serif;
-      font-size: 12px;
-      margin: 0;
-      padding: 20px;
     }
 
     h1 {
       text-align: center;
-      margin-bottom: 40px;
+      margin-top: 80px;
     }
 
+    /* O menu lateral que será oculto inicialmente */
+    .menu-lateral {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+      z-index: 999;
+    }
+
+    /* Link dentro do menu */
+    .menu-lateral a {
+      padding: 10px 15px;
+      text-decoration: none;
+      font-size: 25px;
+      color: white;
+      display: block;
+      transition: 0.3s;
+    }
+
+    /* Efeito ao passar o mouse */
+    .menu-lateral a:hover {
+      background-color: limegreen;
+    }
+
+    /* Botão de Menu (Hamburguer) */
+    .menu-btn {
+      font-size: 30px;
+      cursor: pointer;
+      background-color: transparent;
+      color: white;
+      border: none;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+    }
+
+    /* Estilo para o conteúdo */
+    .content {
+      transition: margin-left .5s;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Card de Séries */
     .catalogo {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -55,134 +105,63 @@
       background-color: limegreen;
     }
 
-    /* Botão de Menu */
-    .menu-btn {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background-color: black;
-      color: white;
-      border: none;
-      padding: 15px;
-      border-radius: 50%;
-      font-size: 18px;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(0,0,0,0.6);
-      transition: background-color 0.3s ease;
-      z-index: 1000;
-    }
-
-    .menu-btn:hover {
-      background-color: limegreen;
-    }
-
-    /* Menu de categorias */
-    .menu-categorias {
-      position: fixed;
-      top: 20px;
-      left: 70px;
-      background-color: black;
-      color: white;
-      padding: 10px;
-      border-radius: 10px;
-      z-index: 999;
-      box-shadow: 0 0 10px rgba(0,0,0,0.7);
-      display: none; /* Menu começa escondido */
-      transition: background-color 0.3s ease;
-    }
-
-    .menu-categorias ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .menu-categorias li {
-      margin-bottom: 10px;
-    }
-
-    .submenu {
-      display: none;
-      list-style-type: none;
-      padding-left: 20px;
-    }
-
-    .submenu li {
-      margin-bottom: 5px;
-    }
-
-    .menu-categorias li:hover .submenu {
-      display: block;
-    }
-
-    /* Mostrar menu quando ativado */
-    .menu-categorias.ativo {
-      display: block;
-    }
-
   </style>
 </head>
 <body>
 
-  <!-- Botão de Menu -->
-  <button class="menu-btn" onclick="toggleMenu()">
-    &#9776; <!-- Ícone de menu -->
-  </button>
-
-  <!-- Menu de categorias -->
-  <div class="menu-categorias" id="menuCategorias">
-    <ul>
-      <li>
-        Filmes
-        <ul class="submenu">
-          <li><a href="#">Ação</a></li>
-          <li><a href="#">Comédia</a></li>
-          <li><a href="#">Drama</a></li>
-          <li><a href="#">Terror</a></li>
-        </ul>
-      </li>
-      <li>
-        Séries
-        <ul class="submenu">
-          <li><a href="#">Ação</a></li>
-          <li><a href="#">Comédia</a></li>
-          <li><a href="#">Drama</a></li>
-          <li><a href="#">Terror</a></li>
-        </ul>
-      </li>
-    </ul>
+  <!-- Menu Lateral -->
+  <div id="menuLateral" class="menu-lateral">
+    <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
+    <a href="#">Filmes</a>
+    <a href="#">Séries</a>
+    <a href="#">Ação</a>
+    <a href="#">Comédia</a>
+    <a href="#">Drama</a>
+    <a href="#">Terror</a>
   </div>
 
-  <h1>Bem-vindo ao Catálogo de Séries</h1>
+  <!-- Botão de Menu -->
+  <button class="menu-btn" onclick="openMenu()">&#9776;</button>
 
-  <div class="catalogo">
-    <div class="card">
-      <img src="https://assets.fxnetworks.com/cms-next/production/3f013aba-5074-4ca4-a10c-12d88ed4eaa6.jpg" alt="Justified">
-      <a href="justified/assistir.html">Assistir Justified</a>
-    </div>
-    <div class="card">
-      <img src="https://infinitasvidas.wordpress.com/wp-content/uploads/2015/10/poster-breaking-bad.png" alt="Breaking Bad">
-      <a href="breakingbad/assistir.html">Assistir Breaking Bad</a>
-    </div>
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/pt/a/a2/TheWalkingDead-P%C3%B4ster.jpg" alt="The Walking Dead">
-      <a href="thewalkingdead/assistir.html">Assistir The Walking Dead</a>
-    </div>
-    <div class="card">
-      <img src="https://m.media-amazon.com/images/M/MV5BMTNhMDJmNmYtNDQ5OS00ODdlLWE0ZDAtZTgyYTIwNDY3OTU3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Game of Thrones">
-      <a href="gameofthrones/assistir.html">Assistir Game of Thrones</a>
-    </div>
-    <div class="card">
-      <img src="https://br.web.img3.acsta.net/pictures/14/01/23/13/30/209537.jpg" alt="The Big Bang Theory">
-      <a href="thebigbangtheory/assistir.html">Assistir The Big Bang Theory</a>
+  <!-- Conteúdo -->
+  <div class="content">
+    <h1>Bem-vindo ao Catálogo de Séries</h1>
+
+    <div class="catalogo">
+      <div class="card">
+        <img src="https://assets.fxnetworks.com/cms-next/production/3f013aba-5074-4ca4-a10c-12d88ed4eaa6.jpg" alt="Justified">
+        <a href="justified/assistir.html">Assistir Justified</a>
+      </div>
+      <div class="card">
+        <img src="https://infinitasvidas.wordpress.com/wp-content/uploads/2015/10/poster-breaking-bad.png" alt="Breaking Bad">
+        <a href="breakingbad/assistir.html">Assistir Breaking Bad</a>
+      </div>
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/pt/a/a2/TheWalkingDead-P%C3%B4ster.jpg" alt="The Walking Dead">
+        <a href="thewalkingdead/assistir.html">Assistir The Walking Dead</a>
+      </div>
+      <div class="card">
+        <img src="https://m.media-amazon.com/images/M/MV5BMTNhMDJmNmYtNDQ5OS00ODdlLWE0ZDAtZTgyYTIwNDY3OTU3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Game of Thrones">
+        <a href="gameofthrones/assistir.html">Assistir Game of Thrones</a>
+      </div>
+      <div class="card">
+        <img src="https://br.web.img3.acsta.net/pictures/14/01/23/13/30/209537.jpg" alt="The Big Bang Theory">
+        <a href="thebigbangtheory/assistir.html">Assistir The Big Bang Theory</a>
+      </div>
     </div>
   </div>
 
   <script>
-    // Função para alternar o menu de categorias
-    function toggleMenu() {
-      var menu = document.getElementById('menuCategorias');
-      menu.classList.toggle('ativo');
+    // Função para abrir o menu
+    function openMenu() {
+      document.getElementById("menuLateral").style.width = "250px";
+      document.querySelector(".content").style.marginLeft = "250px";
+    }
+
+    // Função para fechar o menu
+    function closeMenu() {
+      document.getElementById("menuLateral").style.width = "0";
+      document.querySelector(".content").style.marginLeft = "0";
     }
   </script>
 
