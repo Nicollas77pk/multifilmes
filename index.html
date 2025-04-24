@@ -47,6 +47,18 @@
       background-color: limegreen;
     }
 
+    /* Submenu (oculto por padrão) */
+    .submenu {
+      display: none;
+      background-color: #333;
+      padding-left: 20px;
+    }
+
+    /* Mostrar submenu quando estiver ativo */
+    .menu-lateral .active .submenu {
+      display: block;
+    }
+
     /* Botão de Menu (Hamburguer) */
     .menu-btn {
       font-size: 30px;
@@ -112,12 +124,20 @@
   <!-- Menu Lateral -->
   <div id="menuLateral" class="menu-lateral">
     <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
-    <a href="#">Filmes</a>
-    <a href="#">Séries</a>
-    <a href="#">Ação</a>
-    <a href="#">Comédia</a>
-    <a href="#">Drama</a>
-    <a href="#">Terror</a>
+    <a href="#" onclick="toggleSubmenu('filmes')">Filmes</a>
+    <div id="filmes" class="submenu">
+      <a href="#">Ação</a>
+      <a href="#">Comédia</a>
+      <a href="#">Drama</a>
+      <a href="#">Terror</a>
+    </div>
+    <a href="#" onclick="toggleSubmenu('series')">Séries</a>
+    <div id="series" class="submenu">
+      <a href="#">Justified</a>
+      <a href="#">Breaking Bad</a>
+      <a href="#">Game of Thrones</a>
+      <a href="#">The Big Bang Theory</a>
+    </div>
   </div>
 
   <!-- Botão de Menu -->
@@ -162,6 +182,16 @@
     function closeMenu() {
       document.getElementById("menuLateral").style.width = "0";
       document.querySelector(".content").style.marginLeft = "0";
+    }
+
+    // Função para mostrar/esconder submenu
+    function toggleSubmenu(id) {
+      const submenu = document.getElementById(id);
+      submenu.style.display = (submenu.style.display === "block") ? "none" : "block";
+
+      // Adiciona ou remove a classe 'active' ao item de menu
+      const menuItem = document.querySelector(`[onclick="toggleSubmenu('${id}')"]`);
+      menuItem.classList.toggle("active");
     }
   </script>
 
