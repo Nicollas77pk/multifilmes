@@ -125,7 +125,7 @@
 
   <!-- Menu Lateral -->
   <div id="menuLateral" class="menu-lateral">
-
+    <a href="javascript:void(0)" class="close-btn" onclick="toggleMenu()">&#9776;</a>
     <a href="#" onclick="toggleSubmenu('filmes')">Filmes</a>
     <div id="filmes" class="submenu">
       <a href="#">Ação</a>
@@ -151,7 +151,7 @@
   </div>
 
   <!-- Botão de Menu -->
-  <button class="menu-btn" onclick="toggleMenu()">&#9776;</button>
+  <a href="javascript:void(0)" class="menu-btn" onclick="toggleMenu()">&#9776;</a>
 
   <!-- Conteúdo -->
   <div class="content">
@@ -186,14 +186,17 @@
     function toggleMenu() {
       const menu = document.getElementById("menuLateral");
       const content = document.querySelector(".content");
+      const menuBtn = document.querySelector(".menu-btn");
 
       // Se o menu estiver fechado, abre-o e move o conteúdo
       if (menu.style.width === "0px" || menu.style.width === "") {
         menu.style.width = "250px";
         content.style.marginLeft = "250px";
+        menuBtn.innerHTML = "&#10005;";  // Muda para o ícone de fechar
       } else {
         menu.style.width = "0";
         content.style.marginLeft = "0";
+        menuBtn.innerHTML = "&#9776;";  // Muda de volta para o ícone de menu
       }
     }
 
