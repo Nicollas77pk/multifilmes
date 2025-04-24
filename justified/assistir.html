@@ -19,15 +19,23 @@
       margin-bottom: 40px;
     }
     .episodios {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+      display: block;
+      margin-top: 20px;
     }
     .episodio {
       background: #1e1e1e;
       padding: 10px;
       border-radius: 8px;
       cursor: pointer;
+      margin-bottom: 15px;
+      text-align: center;
+      color: #fff;
+    }
+    .episodio img {
+      width: 100%;
+      max-width: 150px;
+      border-radius: 5px;
+      margin-bottom: 10px;
     }
     .player {
       width: 100%;
@@ -67,7 +75,10 @@
       temporadas[temp].forEach(ep => {
         const btn = document.createElement('div');
         btn.className = 'episodio';
-        btn.innerText = ep.titulo;
+        btn.innerHTML = `
+          <img src="${ep.capa}" alt="${ep.titulo}">
+          <div>${ep.titulo}</div>
+        `;
         btn.onclick = () => {
           videoPlayer.src = ep.url;
           playerBox.style.display = 'block';
@@ -83,4 +94,3 @@
 
 </body>
 </html>
-
