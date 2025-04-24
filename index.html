@@ -55,8 +55,8 @@
       background-color: limegreen;
     }
 
-    /* Botão home fixo */
-    .home-btn {
+    /* Menu de Categorias */
+    .menu-btn {
       position: fixed;
       top: 20px;
       left: 20px;
@@ -70,31 +70,85 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.6);
       transition: background-color 0.3s ease;
       z-index: 1000;
-      text-decoration: none;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .home-btn:hover {
+    .menu-btn:hover {
       background-color: limegreen;
     }
 
-    .home-btn svg {
+    .menu-btn svg {
       width: 20px;
       height: 20px;
       fill: white;
+    }
+
+    /* Estilos para o menu dropdown */
+    .dropdown {
+      position: fixed;
+      top: 60px;
+      left: 20px;
+      background-color: #333;
+      border-radius: 5px;
+      display: none;
+      flex-direction: column;
+      padding: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+      z-index: 1001;
+    }
+
+    .dropdown a {
+      padding: 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      background-color: transparent;
+      transition: background-color 0.2s ease;
+    }
+
+    .dropdown a:hover {
+      background-color: limegreen;
+    }
+
+    /* Mostrar dropdown ao passar o mouse */
+    .menu-btn:active + .dropdown {
+      display: flex;
     }
   </style>
 </head>
 <body>
 
-  <!-- Botão HOME fixo -->
-  <a href="index.html" class="home-btn" title="Página Inicial">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-      <path d="M280.37 148.26L96 300.11V464a16 16 0 0016 16l112-.3a16 16 0 0016-15.7V368a16 16 0 0116-16h64a16 16 0 0116 16v96a16 16 0 0016 16l112 .3a16 16 0 0016-16V300L295.67 148.26a12.19 12.19 0 00-15.3 0zM571.6 251.47L488 182.6V44a12 12 0 00-12-12h-56a12 12 0 00-12 12v72.61L318.47 43a48 48 0 00-61 0L4.34 251.47a12 12 0 00-1.6 16.9l25.5 31a12 12 0 0016.9 1.6L64 270.69V464a48 48 0 0048 48h352a48 48 0 0048-48V270.7l18.9 15.3a12 12 0 0016.9-1.6l25.5-31a12 12 0 00-1.7-16.93z"/>
+  <!-- Menu de Categorias -->
+  <button class="menu-btn" title="Categorias">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+      <path d="M32 80h448c17.7 0 32-14.3 32-32s-14.3-32-32-32H32C14.3 16 0 30.3 0 48s14.3 32 32 32zm0 144h448c17.7 0 32-14.3 32-32s-14.3-32-32-32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32zm0 144h448c17.7 0 32-14.3 32-32s-14.3-32-32-32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32z"/>
     </svg>
-  </a>
+  </button>
+
+  <!-- Menu de Categorias Dropdown -->
+  <div class="dropdown">
+    <a href="#">Filmes</a>
+    <a href="#">Ação</a>
+    <a href="#">Comédia</a>
+    <a href="#">Drama</a>
+    <a href="#">Ficção Científica</a>
+    <a href="#">Romance</a>
+    <a href="#">Terror</a>
+    <a href="#">Animação</a>
+    <a href="#">Documentários</a>
+
+    <a href="#">Séries</a>
+    <a href="#">Ação</a>
+    <a href="#">Comédia</a>
+    <a href="#">Drama</a>
+    <a href="#">Ficção Científica</a>
+    <a href="#">Romance</a>
+    <a href="#">Terror</a>
+    <a href="#">Animação</a>
+    <a href="#">Documentários</a>
+  </div>
 
   <h1>Bem-vindo ao Catálogo de Séries</h1>
 
