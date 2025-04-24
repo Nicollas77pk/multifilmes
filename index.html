@@ -55,22 +55,40 @@
       background-color: limegreen;
     }
 
-    /* Menu fixo de categorias */
-    .menu-categorias {
+    /* Botão de Menu */
+    .menu-btn {
       position: fixed;
       top: 20px;
       left: 20px;
       background-color: black;
       color: white;
-      padding: 10px;
-      border-radius: 10px;
-      z-index: 1000;
-      box-shadow: 0 0 10px rgba(0,0,0,0.7);
+      border: none;
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0,0,0,0.6);
       transition: background-color 0.3s ease;
+      z-index: 1000;
     }
 
-    .menu-categorias:hover {
+    .menu-btn:hover {
       background-color: limegreen;
+    }
+
+    /* Menu de categorias */
+    .menu-categorias {
+      position: fixed;
+      top: 20px;
+      left: 70px;
+      background-color: black;
+      color: white;
+      padding: 10px;
+      border-radius: 10px;
+      z-index: 999;
+      box-shadow: 0 0 10px rgba(0,0,0,0.7);
+      display: none; /* Menu começa escondido */
+      transition: background-color 0.3s ease;
     }
 
     .menu-categorias ul {
@@ -97,12 +115,22 @@
       display: block;
     }
 
+    /* Mostrar menu quando ativado */
+    .menu-categorias.ativo {
+      display: block;
+    }
+
   </style>
 </head>
 <body>
 
-  <!-- Menu de categorias fixo -->
-  <div class="menu-categorias">
+  <!-- Botão de Menu -->
+  <button class="menu-btn" onclick="toggleMenu()">
+    &#9776; <!-- Ícone de menu -->
+  </button>
+
+  <!-- Menu de categorias -->
+  <div class="menu-categorias" id="menuCategorias">
     <ul>
       <li>
         Filmes
@@ -149,6 +177,14 @@
       <a href="thebigbangtheory/assistir.html">Assistir The Big Bang Theory</a>
     </div>
   </div>
+
+  <script>
+    // Função para alternar o menu de categorias
+    function toggleMenu() {
+      var menu = document.getElementById('menuCategorias');
+      menu.classList.toggle('ativo');
+    }
+  </script>
 
 </body>
 </html>
