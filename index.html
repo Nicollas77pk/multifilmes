@@ -41,7 +41,8 @@
 
     .card img {
       width: 100%;
-      height: auto;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
       display: block;
     }
 
@@ -52,6 +53,26 @@
       text-decoration: none;
       font-weight: bold;
       background-color: limegreen;
+    }
+
+    .voltar {
+      display: block;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .voltar a {
+      background-color: limegreen;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .voltar a:hover {
+      background-color: #00b300;
     }
   </style>
 </head>
@@ -80,6 +101,10 @@
       <img src="https://br.web.img3.acsta.net/pictures/14/01/23/13/30/209537.jpg" alt="The Big Bang Theory">
       <a href="thebigbangtheory/assistir.html">Assistir The Big Bang Theory</a>
     </div>
+  </div>
+
+  <div class="voltar">
+    <a href="index.html">Voltar à Página Inicial</a>
   </div>
 
 </body>
