@@ -1,1 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Justified - Temporadas</title>
+  <script src="links.js"></script>
+  <style>
+    body {
+      background: #121212;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .temporada {
+      margin-bottom: 40px;
+    }
+    .episodios {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .episodio {
+      background: #1e1e1e;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .player {
+      width: 100%;
+      max-width: 800px;
+      margin: 30px auto;
+      display: none;
+    }
+    video {
+      width: 100%;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Justified - Temporadas</h1>
+
+  <div id="conteudo"></div>
+
+  <div class="player" id="playerBox">
+    <video id="videoPlayer" controls autoplay></video>
+  </div>
+
+  <script>
+    const conteudo = document.getElementById('conteudo');
+    const playerBox = document.getElementById('playerBox');
+    const videoPlayer = document.getElementById('videoPlayer');
+
+    Object.keys(temporadas).forEach(temp => {
+      const div = document.createElement('div');
+      div.className = 'temporada';
+      div.innerHTML = `<h2>${temp}</h2>`;
+
+      const lista = document.createElement('div');
+      lista.className = 'episodios';
+
+      temporadas[temp].forEach(ep => {
+        const btn = document.createElement('div');
+        btn.className = 'episodio';
+        btn.innerText = ep.titulo;
+        btn.onclick = () => {
+          videoPlayer.src = ep.url;
+          playerBox.style.display = 'block';
+          videoPlayer.play();
+        };
+        lista.appendChild(btn);
+      });
+
+      div.appendChild(lista);
+      conteudo.appendChild(div);
+    });
+  </script>
+
+</body>
+</html>
 
