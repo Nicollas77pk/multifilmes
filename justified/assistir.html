@@ -13,7 +13,25 @@
     }
     h1 {
       text-align: center;
+      margin-bottom: 10px;
+    }
+    .voltar {
+      display: flex;
+      justify-content: center;
       margin-bottom: 30px;
+    }
+    .voltar a {
+      background: #1e1e1e;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+      border: 1px solid #333;
+    }
+    .voltar a:hover {
+      background: #333;
     }
     .player {
       width: 100%;
@@ -31,7 +49,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('https://images.justwatch.com/poster/305418324/s332/temporada-1') center center / cover no-repeat;
+      background: url('https://m.media-amazon.com/images/S/pv-target-images/3d28d68d84017c03cb6efa2c7f2f6a1fb09dabd036f34faf5dbe8cb14d342286.jpg') center center / cover no-repeat;
       border-radius: 10px;
       display: none;
     }
@@ -74,6 +92,10 @@
 
   <h1>Justified - Temporadas</h1>
 
+  <div class="voltar">
+    <a href="index.html">← Voltar à Página Inicial</a>
+  </div>
+
   <div class="player" id="playerBox">
     <div class="preload-image" id="preloadImage"></div>
     <video id="videoPlayer" controls autoplay></video>
@@ -98,9 +120,9 @@
     const videoPlayer = document.getElementById('videoPlayer');
     const preloadImage = document.getElementById('preloadImage');
 
-    let primeiroEpisodio = null;
+    let firstVideoSet = false;
 
-    Object.keys(temporadas).forEach((temp, indexTemp) => {
+    Object.keys(temporadas).forEach(temp => {
       const div = document.createElement('div');
       div.className = 'temporada';
       div.innerHTML = `<h2>${temp}</h2>`;
@@ -108,7 +130,7 @@
       const lista = document.createElement('div');
       lista.className = 'episodios';
 
-      temporadas[temp].forEach((ep, indexEp) => {
+      temporadas[temp].forEach((ep, index) => {
         const btn = document.createElement('div');
         btn.className = 'episodio';
         btn.innerText = ep.titulo;
@@ -124,23 +146,22 @@
           };
         };
 
-        if (indexTemp === 0 && indexEp === 0) {
-          primeiroEpisodio = ep;
-        }
-
         lista.appendChild(btn);
+
+        // Toca o primeiro episódio automaticamente
+        if (!firstVideoSet) {
+          videoPlayer.src = ep.url;
+          playerBox.style.display = 'block';
+          videoPlayer.oncanplay = () => {
+            preloadImage.style.display = 'none';
+          };
+          firstVideoSet = true;
+        }
       });
 
       div.appendChild(lista);
       conteudo.appendChild(div);
     });
-
-    // Carregar o primeiro episódio automaticamente
-    if (primeiroEpisodio) {
-      videoPlayer.src = primeiroEpisodio.url;
-      videoPlayer.load();
-      videoPlayer.play();
-    }
   </script>
 
 </body>
