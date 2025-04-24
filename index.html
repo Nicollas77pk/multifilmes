@@ -55,28 +55,46 @@
       background-color: limegreen;
     }
 
-    .voltar {
-      display: block;
-      text-align: center;
-      margin-top: 40px;
-    }
-
-    .voltar a {
-      background-color: limegreen;
+    /* Botão home fixo */
+    .home-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: black;
       color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0,0,0,0.6);
+      transition: background-color 0.3s ease;
+      z-index: 1000;
       text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .voltar a:hover {
-      background-color: #00b300;
+    .home-btn:hover {
+      background-color: limegreen;
+    }
+
+    .home-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
     }
   </style>
 </head>
 <body>
+
+  <!-- Botão HOME fixo -->
+  <a href="index.html" class="home-btn" title="Página Inicial">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+      <path d="M280.37 148.26L96 300.11V464a16 16 0 0016 16l112-.3a16 16 0 0016-15.7V368a16 16 0 0116-16h64a16 16 0 0116 16v96a16 16 0 0016 16l112 .3a16 16 0 0016-16V300L295.67 148.26a12.19 12.19 0 00-15.3 0zM571.6 251.47L488 182.6V44a12 12 0 00-12-12h-56a12 12 0 00-12 12v72.61L318.47 43a48 48 0 00-61 0L4.34 251.47a12 12 0 00-1.6 16.9l25.5 31a12 12 0 0016.9 1.6L64 270.69V464a48 48 0 0048 48h352a48 48 0 0048-48V270.7l18.9 15.3a12 12 0 0016.9-1.6l25.5-31a12 12 0 00-1.7-16.93z"/>
+    </svg>
+  </a>
 
   <h1>Bem-vindo ao Catálogo de Séries</h1>
 
@@ -101,10 +119,6 @@
       <img src="https://br.web.img3.acsta.net/pictures/14/01/23/13/30/209537.jpg" alt="The Big Bang Theory">
       <a href="thebigbangtheory/assistir.html">Assistir The Big Bang Theory</a>
     </div>
-  </div>
-
-  <div class="voltar">
-    <a href="index.html">Voltar à Página Inicial</a>
   </div>
 
 </body>
