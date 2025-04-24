@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Catálogo de Séries</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .catalogo {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #1f1f1f;
+      border-radius: 10px;
+      overflow: hidden;
+      width: 200px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.7);
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+    }
+
+    .card a {
+      display: block;
+      padding: 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      background-color: limegreen;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Bem-vindo ao Catálogo de Séries</h1>
+
+  <div class="catalogo">
+    <div class="card">
+      <img src="https://m.media-amazon.com/images/I/81mpFjJfHgL._AC_UF894,1000_QL80_.jpg" alt="Justified">
+      <a href="justified/temporada.html">Assistir Justified</a>
+    </div>
+    <div class="card">
+      <img src="https://m.media-amazon.com/images/I/81bR5u1xJXL._AC_SY679_.jpg" alt="Breaking Bad">
+      <a href="breakingbad/temporada.html">Assistir Breaking Bad</a>
+    </div>
+    <div class="card">
+      <img src="https://m.media-amazon.com/images/I/91i5z4X0V-L._AC_SY679_.jpg" alt="The Walking Dead">
+      <a href="thewalkingdead/temporada.html">Assistir The Walking Dead</a>
+    </div>
+    <div class="card">
+      <img src="https://m.media-amazon.com/images/I/81r+LNvG3sL._AC_SY679_.jpg" alt="Game of Thrones">
+      <a href="gameofthrones/temporada.html">Assistir Game of Thrones</a>
+    </div>
+    <div class="card">
+      <img src="https://m.media-amazon.com/images/I/81kq2g+eYlL._AC_SY679_.jpg" alt="The Big Bang Theory">
+      <a href="thebigbangtheory/temporada.html">Assistir The Big Bang Theory</a>
+    </div>
+  </div>
+
+</body>
+</html>
